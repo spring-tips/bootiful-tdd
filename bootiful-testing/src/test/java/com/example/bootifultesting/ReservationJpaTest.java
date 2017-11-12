@@ -1,4 +1,4 @@
-package com.example.reservationservice;
+package com.example.bootifultesting;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -10,18 +10,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @DataJpaTest
 @RunWith(SpringRunner.class)
-public class ReservationEntityTest {
+public class ReservationJpaTest {
 
     @Autowired
     private TestEntityManager tem;
 
     @Test
-    public void persistence() throws Exception {
-
-        Reservation reservation =
-                this.tem.persistFlushFind(new Reservation(null, "Jane"));
-        Assertions.assertThat(reservation.getId()).isNotNull();
-        Assertions.assertThat(reservation.getReservationName()).isEqualTo("Jane");
-
+    public void mapping() {
+        Reservation jane = this.tem.persistFlushFind(new Reservation(null, "Jane"));
+        Assertions.assertThat(jane.getReservationName()).isEqualTo("Jane");
+        Assertions.assertThat(jane.getId()).isNotNull();
+        Assertions.assertThat(jane.getId()).isGreaterThan(0);
     }
 }

@@ -1,12 +1,12 @@
-package com.example.reservationservice;
+package com.example.bootifultesting;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ReservationServiceApplication {
+public class BootifulTestingApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ReservationServiceApplication.class, args);
+		SpringApplication.run(BootifulTestingApplication.class, args);
 	}
 }

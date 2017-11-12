@@ -1,7 +1,6 @@
-package com.example.reservationservice;
+package com.example.bootifultesting;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +18,10 @@ public class ReservationRepositoryTest {
 
     @Test
     public void findByReservationName() {
-
-        Reservation save = this.repository.save(new Reservation(null, "Jane"));
-        Assert.assertNotNull(save);
-
-        Collection<Reservation> jane = this.repository.findByReservationName("Jane");
-        Assertions.assertThat(jane.size()).isEqualTo(1);
-
-
+        this.repository.save(new Reservation(null, "Jane"));
+        Collection<Reservation> byReservationName = this.repository.findByReservationName("Jane");
+        Assertions.assertThat(byReservationName.size()).isEqualTo(1);
+        Assertions.assertThat(byReservationName.iterator().next().getId()).isGreaterThan(0);
+        Assertions.assertThat(byReservationName.iterator().next().getReservationName()).isEqualTo("Jane");
     }
-
 }

@@ -1,4 +1,4 @@
-package com.example.reservationservice;
+package com.example.bootifultesting;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +15,8 @@ public class ReservationRestController {
         this.reservationRepository = reservationRepository;
     }
 
-    @GetMapping(value = "/reservations", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/reservations" , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     Collection<Reservation> reservations() {
         return this.reservationRepository.findAll();
     }
-
 }

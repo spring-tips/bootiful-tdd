@@ -1,4 +1,4 @@
-package com.example.reservationservice;
+package com.example.bootifultesting;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,28 +12,28 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 @WebMvcTest
 @RunWith(SpringRunner.class)
 public class ReservationRestControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
-
     @MockBean
     private ReservationRepository reservationRepository;
+
+    @Autowired
+    private MockMvc mockMvc;
 
     @Test
     public void getReservations() throws Exception {
 
-        Mockito.when(this.reservationRepository.findAll()).thenReturn(Arrays.asList(new Reservation(1L, "John"),
-                new Reservation(2L, "Jane")));
+        Mockito.when(this.reservationRepository.findAll())
+                .thenReturn(Collections.singletonList(new Reservation(1L, "Jane")));
 
         this.mockMvc.perform(MockMvcRequestBuilders.get("/reservations"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(MockMvcResultMatchers.jsonPath("@.[0].id").value(1L))
-                .andExpect(MockMvcResultMatchers.jsonPath("@.[0].reservationName").value("John"))
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8));
+                .andExpect(MockMvcResultMatchers.jsonPath("@.[0].reservationName").value("Jane"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

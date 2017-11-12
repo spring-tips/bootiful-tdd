@@ -1,4 +1,4 @@
-package com.example.reservationservice;
+package com.example.bootifultesting;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,5 +17,6 @@ public class Reservation {
     @Id
     @GeneratedValue
     private Long id;
+
     private String reservationName;
 }
